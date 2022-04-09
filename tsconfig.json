@@ -22,6 +22,7 @@
       "@core/*": ["core/src/*"],
       "@libs/*": ["core/src/libs/*"],
       "@utils/*": ["core/src/utils/*"],
+      "@providers/*": ["core/src/providers/*"],
       "@config/*": ["config/*"]
     }
   }
