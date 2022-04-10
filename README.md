@@ -1,4 +1,14 @@
-# Nest.js Boilerplate
+# NeBo
+
+NeBo is the boilerplate for nest.js.
+
+It supports Docker and requires the following global dependency packages when developing in a local environment.
+
+```bash
+$ npm i -g dotenv-cli
+```
+
+---
 
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
