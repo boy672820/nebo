@@ -8,8 +8,8 @@ import configuration from './configuration';
     ConfigModule.forRoot({
       load: [configuration],
       validationSchema: Joi.object({
-        expiration: Joi.string().required(),
-        secret: Joi.string().required(),
+        JWT_EXPIRATION_TIME: Joi.string().required(),
+        JWT_SECRET: Joi.string().required(),
       }),
     }),
   ],

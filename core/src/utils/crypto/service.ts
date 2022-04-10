@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { createCipheriv, createDecipheriv, randomBytes } from 'crypto';
 
 @Injectable()
-export class cryptoService {
+export class CryptoService {
   constructor(@Inject('KEY') private readonly key: Buffer) {}
 
   encrypt(data: string | NodeJS.ArrayBufferView) {

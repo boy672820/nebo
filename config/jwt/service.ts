@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 
-const prefix = (env: string) => `jwt.${env}`;
+const prefix = (key: string) => `jwt.${key}`;
 
 @Injectable()
 export class JwtConfigService {

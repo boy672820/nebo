@@ -9,8 +9,8 @@ import { AppConfigService } from './service';
     ConfigModule.forRoot({
       load: [configuration],
       validationSchema: Joi.object({
-        port: Joi.number().default(3000),
-        env: Joi.string()
+        PORT: Joi.number().default(3000),
+        NODE_ENV: Joi.string()
           .valid('development', 'production')
           .default('development'),
       }),

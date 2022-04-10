@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 
-const prefix = (env: string) => `app.${env}`;
+const prefix = (key: string) => `app.${key}`;
 
 @Injectable()
 export class AppConfigService {

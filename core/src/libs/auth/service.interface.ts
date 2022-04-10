@@ -1,5 +1,5 @@
 import { User } from '@prisma/client';
 
-export interface AuthServiceInterface {
+export interface AuthServiceFactory {
   validateUser(email: string, password: string): Promise<User>;
 }
