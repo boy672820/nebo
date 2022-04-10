@@ -6,13 +6,11 @@ NeBo is the boilerplate for nest.js.
 
 ## Installation
 
-You can run in docker environment
+You can run in docker environment.
 
 ```bash
 $ docker-compose up
 ```
-
-## Installation
 
 It supports docker but when installing in a local development environment requires the following global dependency packages.
 
@@ -25,6 +23,20 @@ And install the dependency packages.
 ```bash
 $ npm install
 ```
+
+## Running the app
+
+```bash
+# development
+$ npm run dev
+
+# build your app
+$ npm run build
+
+# production mode
+$ npm run prod
+```
+
 
 
 ---
