@@ -3,19 +3,32 @@ import { AppModule } from './app.module';
 import { PrismaService } from '@providers/postgresql';
 import { AppConfigService } from '../config/app';
 
-if (process.env.NODE_ENV === 'production') {
-  async function bootstrap() {
-    const app = await NestFactory.create(AppModule);
+async function createApp() {
+  const app = await NestFactory.create(AppModule);
 
-    const prismaService = app.get(PrismaService);
-    await prismaService.enableShutdownHooks(app);
+  const prismaService = app.get(PrismaService);
+  await prismaService.enableShutdownHooks(app);
 
-    const appConfig = app.get(AppConfigService);
-    const port = appConfig.port;
-
-    await app.listen(port);
-  }
-  bootstrap();
+  return app;
 }
 
-export const viteNodeApp = NestFactory.create(AppModule);
+// ------------------------------------------------
+
+async function bootstrap() {
+  const app = await createApp();
+
+  const appConfig = app.get(AppConfigService);
+  const port = appConfig.port;
+
+  await app.listen(port);
+}
+
+// ------------------------------------------------
+
+export let viteNodeApp;
+
+if (process.env.NODE_ENV === 'production') {
+  bootstrap();
+} else {
+  viteNodeApp = NestFactory.create(AppModule);
+}

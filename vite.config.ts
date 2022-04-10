@@ -2,8 +2,15 @@ import { defineConfig } from 'vite';
 import { VitePluginNode } from 'vite-plugin-node';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
-export default defineConfig(() => {
-  return {
+export default () => {
+  // Main enviroment & development mode
+  require('dotenv').config({ path: './.env' });
+  require('dotenv').config({ path: `./.env.${process.env.NODE_ENV}` });
+
+  return defineConfig({
+    server: {
+      port: process.env.PORT || 3000,
+    },
     build: {
       target: 'es2020',
     },
@@ -34,31 +41,5 @@ export default defineConfig(() => {
         tsCompiler: 'swc',
       }),
     ],
-  };
-});
-
-// import { defineConfig } from 'vite';
-// import { VitePluginNode } from 'vite-plugin-node';
-// // import tsconfigPaths from 'vite-tsconfig-paths';
-// import { resolve } from 'path';
-
-// export default defineConfig({
-//   plugins: [
-//     // tsconfigPaths(),
-//     ...VitePluginNode({
-//       adapter: 'nest',
-//       appPath: './src/main.ts',
-//       tsCompiler: 'swc',
-//     }),
-//   ],
-//   resolve: {
-//     alias: {
-//       '@app/*': resolve(__dirname, 'src/*'),
-//       '@core/*': resolve(__dirname, 'core/src/*'),
-//       '@libs/*': resolve(__dirname, 'core/src/libs/*'),
-//       '@utils/*': resolve(__dirname, 'core/src/utils/*'),
-//       '@providers/*': resolve(__dirname, 'core/src/providers/*'),
-//       '@config/*': resolve(__dirname, 'config/*'),
-//     },
-//   },
-// });
+  });
+};
