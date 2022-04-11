@@ -8,9 +8,6 @@ export default () => {
   require('dotenv').config({ path: `./.env.${process.env.NODE_ENV}` });
 
   return defineConfig({
-    server: {
-      port: process.env.PORT || 3000,
-    },
     build: {
       target: 'es2020',
     },
