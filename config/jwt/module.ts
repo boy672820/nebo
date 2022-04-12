@@ -11,6 +11,7 @@ import configuration from './configuration';
         JWT_EXPIRATION_TIME: Joi.string().required(),
         JWT_SECRET: Joi.string().required(),
       }),
+      envFilePath: [`.env.${process.env.NODE_ENV}`],
     }),
   ],
 })

@@ -34,8 +34,8 @@ async function bootstrap() {
 
 export let viteNodeApp;
 
-if (process.env.NODE_ENV === 'production') {
-  void bootstrap();
+if (process.env.NODE_ENV !== 'production') {
+  bootstrap();
 } else {
   viteNodeApp = createApp();
 }

@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import Joi from 'joi';
+import * as Joi from 'joi';
 import configuration from './configuration';
 import { CryptoConfigService } from './service';
 
@@ -11,6 +11,7 @@ import { CryptoConfigService } from './service';
       validationSchema: Joi.object({
         CRYPTO_PASSWORD: Joi.string().required(),
       }),
+      envFilePath: [`.env.${process.env.NODE_ENV}`],
     }),
   ],
   providers: [CryptoConfigService, ConfigService],
