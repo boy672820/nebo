@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { PrismaService } from '@providers/postgresql';
+import { PrismaService } from '@core/providers/postgresql/prisma';
 import { AppConfigService } from '../config/app';
 
 declare const module: any;
