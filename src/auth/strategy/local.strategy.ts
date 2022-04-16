@@ -1,10 +1,14 @@
 import { Injectable } from '@nestjs/common';
-import { LocalStrategy as _LocalStrategy } from '@libs/auth';
+import { LocalBaseStrategy } from '@libs/auth';
 import { User } from '@prisma/client';
 import { AuthService } from '../service';
+import { PassportStrategy } from '@nestjs/passport';
 
 @Injectable()
-export class LocalStrategy extends _LocalStrategy {
+export class LocalStrategy extends PassportStrategy(
+  LocalBaseStrategy,
+  'local',
+) {
   constructor(protected readonly authService: AuthService) {
     super(authService);
   }

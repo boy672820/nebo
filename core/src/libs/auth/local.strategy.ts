@@ -3,11 +3,18 @@ import { PassportStrategy } from '@nestjs/passport';
 import { User } from '@prisma/client';
 import { Strategy } from 'passport-local';
 import { AuthServiceFactory } from './service.interface';
+import { LocalOptions } from './types';
 
 @Injectable()
-export class LocalStrategy extends PassportStrategy(Strategy) {
-  constructor(protected readonly authService: AuthServiceFactory) {
-    super({ usernameField: 'email' });
+export class LocalBaseStrategy extends PassportStrategy(Strategy) {
+  constructor(
+    protected readonly authService: AuthServiceFactory,
+    protected readonly options: LocalOptions,
+  ) {
+    super({
+      usernameField: options?.usernameField || 'email',
+      passwordField: options?.passwordField || 'password',
+    });
   }
 
   async validate(email: string, password: string);
