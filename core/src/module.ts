@@ -5,5 +5,6 @@ import { PrismaModule } from '@providers/postgresql/prisma';
 @Global()
 @Module({
   imports: [AppConfigModule, PrismaModule],
+  exports: [PrismaModule],
 })
 export class CoreModule {}

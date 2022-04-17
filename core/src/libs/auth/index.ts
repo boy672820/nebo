@@ -1,2 +1,2 @@
-export * from './local.strategy';
+export * from './strategy/local';
 export * from './service.interface';
