@@ -1,1 +1,1 @@
-export * from './local.decorator';
+export * from './local';
