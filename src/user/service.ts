@@ -1,15 +1,17 @@
 import { Injectable } from '@nestjs/common';
-import { UserDao } from '@providers/postgresql/dao';
+import { Prisma, User } from '@prisma/client';
 import * as argon2 from 'argon2';
-import { CreateUserDto } from './dto/create';
+import { PrismaService } from '@providers/postgresql/prisma';
 
 @Injectable()
 export class UserService {
-  constructor(private readonly userDao: UserDao) {}
+  constructor(private readonly prisma: PrismaService) {}
 
-  async create(data: CreateUserDto) {
-    const password = await argon2.hash(data.password);
-    const newUser = await this.userDao.create({ ...data, password });
+  async create(input: Prisma.UserCreateInput): Promise<User> {
+    const password = await argon2.hash(input.password);
+    const newUser = await this.prisma.user.create({
+      data: { ...input, password },
+    });
 
     return newUser;
   }

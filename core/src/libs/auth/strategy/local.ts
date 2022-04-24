@@ -1,9 +1,9 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { User } from '@prisma/client';
+import { AuthServiceFactory, LocalOptions } from '@libs/auth';
+import { InvalidCredentialsException } from '@core/errors/auth';
 import { Strategy } from 'passport-local';
-import { AuthServiceFactory } from '../service.interface';
-import { LocalOptions } from '../types';
 
 @Injectable()
 export class LocalBaseStrategy extends PassportStrategy(Strategy) {
@@ -23,7 +23,7 @@ export class LocalBaseStrategy extends PassportStrategy(Strategy) {
     const user = await this.authService.validateUser(email, password);
 
     if (!user) {
-      throw new UnauthorizedException();
+      throw new InvalidCredentialsException();
     }
 
     return user;
