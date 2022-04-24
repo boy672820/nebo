@@ -28,7 +28,7 @@ export class AllExceptionFilter implements ExceptionFilter {
     httpAdapter.reply(ctx.getResponse(), responseBody, httpStatus);
   }
 
-  transformException(exception: unknown) {
+  transformException(exception: unknown): [number, string] {
     if (exception instanceof HttpException) {
       return [exception.getStatus(), exception.message];
     }
