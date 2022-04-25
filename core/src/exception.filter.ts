@@ -33,6 +33,8 @@ export class AllExceptionFilter implements ExceptionFilter {
       return [exception.getStatus(), exception.message];
     }
 
+    console.log(exception.getStatus());
+
     return [HttpStatus.INTERNAL_SERVER_ERROR, 'Internal server error'];
   }
 }
