@@ -6,6 +6,7 @@ import {
   HttpStatus,
 } from '@nestjs/common';
 import { HttpAdapterHost } from '@nestjs/core';
+import { Prisma } from '@prisma/client';
 
 @Catch()
 export class AllExceptionFilter implements ExceptionFilter {
@@ -33,7 +34,9 @@ export class AllExceptionFilter implements ExceptionFilter {
       return [exception.getStatus(), exception.message];
     }
 
-    console.log(exception.getStatus());
+    if (exception instanceof Prisma.PrismaClientKnownRequestError) {
+      console.log(exception.code);
+    }
 
     return [HttpStatus.INTERNAL_SERVER_ERROR, 'Internal server error'];
   }
