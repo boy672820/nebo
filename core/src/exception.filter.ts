@@ -7,10 +7,14 @@ import {
 } from '@nestjs/common';
 import { HttpAdapterHost } from '@nestjs/core';
 import { Prisma } from '@prisma/client';
+import { PrismaExceptionCatcher } from '@providers/postgresql/prisma/exception.catcher';
 
 @Catch()
 export class AllExceptionFilter implements ExceptionFilter {
-  constructor(private readonly httpAdapterHost: HttpAdapterHost) {}
+  constructor(
+    private readonly httpAdapterHost: HttpAdapterHost,
+    private readonly prismaExceptionCatcher: PrismaExceptionCatcher,
+  ) {}
 
   catch(exception: unknown, host: ArgumentsHost) {
     const { httpAdapter } = this.httpAdapterHost;
@@ -35,7 +39,7 @@ export class AllExceptionFilter implements ExceptionFilter {
     }
 
     if (exception instanceof Prisma.PrismaClientKnownRequestError) {
-      console.log(exception.code);
+      console.log(exception.code, exception?.meta);
     }
 
     return [HttpStatus.INTERNAL_SERVER_ERROR, 'Internal server error'];

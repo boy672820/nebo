@@ -3,6 +3,7 @@ import { AppConfigModule } from '@config/app';
 import { PrismaModule } from '@providers/postgresql/prisma';
 import { APP_FILTER } from '@nestjs/core';
 import { AllExceptionFilter } from './exception.filter';
+import { PrismaExceptionCatcher } from '@providers/postgresql/prisma/exception.catcher';
 
 @Global()
 @Module({
@@ -10,6 +11,7 @@ import { AllExceptionFilter } from './exception.filter';
   providers: [
     {
       provide: APP_FILTER,
+      inject: [PrismaExceptionCatcher],
       useClass: AllExceptionFilter,
     },
   ],
