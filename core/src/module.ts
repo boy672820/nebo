@@ -9,6 +9,7 @@ import { PrismaExceptionCatcher } from '@providers/postgresql/prisma/exception.c
 @Module({
   imports: [AppConfigModule, PrismaModule],
   providers: [
+    PrismaExceptionCatcher,
     {
       provide: APP_FILTER,
       inject: [PrismaExceptionCatcher],

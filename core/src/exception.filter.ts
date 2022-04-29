@@ -39,7 +39,7 @@ export class AllExceptionFilter implements ExceptionFilter {
     }
 
     if (exception instanceof Prisma.PrismaClientKnownRequestError) {
-      console.log(exception.code, exception?.meta);
+      return this.prismaExceptionCatcher.transformException(exception);
     }
 
     return [HttpStatus.INTERNAL_SERVER_ERROR, 'Internal server error'];
