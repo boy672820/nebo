@@ -4,10 +4,11 @@ import { PrismaModule } from '@providers/postgresql/prisma';
 import { APP_FILTER } from '@nestjs/core';
 import { AllExceptionFilter } from './exception.filter';
 import { PrismaExceptionCatcher } from '@providers/postgresql/prisma/exception.catcher';
+import { LoggerModule } from '@libs/logger/module';
 
 @Global()
 @Module({
-  imports: [AppConfigModule, PrismaModule],
+  imports: [AppConfigModule, PrismaModule, LoggerModule],
   providers: [
     PrismaExceptionCatcher,
     {

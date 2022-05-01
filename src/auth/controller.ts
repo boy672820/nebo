@@ -8,6 +8,7 @@ export class AuthController {
   @Local()
   @Post()
   async signIn(@User() user: LocalPayload) {
+    console.log(user);
     return user;
   }
 }

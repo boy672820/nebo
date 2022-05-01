@@ -13,13 +13,9 @@ export class PrismaExceptionCatcher {
       exception.code === 'P2002' &&
       exception?.meta['target'].includes('email')
     ) {
-      error = this.throwAlreadyExistsEmail();
+      error = new AlreadyExistsEmailException();
     }
 
     return [error.getStatus(), error.message];
-  }
-
-  throwAlreadyExistsEmail() {
-    return new AlreadyExistsEmailException();
   }
 }
