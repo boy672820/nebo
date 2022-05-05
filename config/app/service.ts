@@ -14,4 +14,8 @@ export class AppConfigService {
   get env(): string {
     return this.configService.get<string>(prefix('env'));
   }
+
+  get name(): string {
+    return this.configService.get<string>(prefix('name'));
+  }
 }
