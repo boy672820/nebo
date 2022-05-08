@@ -10,6 +10,7 @@ services:
       - ./test:/usr/src/app/test
     ports:
       - '8112:8112'
+    tty: true
 
   database:
     container_name: postgres

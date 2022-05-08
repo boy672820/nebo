@@ -1,10 +1,16 @@
 FROM rust:1.58.1-alpine3.14 as prisma
+
 ENV RUSTFLAGS="-C target-feature=-crt-static"
+
 RUN apk --no-cache add openssl direnv git musl-dev openssl-dev build-base perl protoc
+
 RUN git clone --depth=1 --branch=3.9.0 https://github.com/prisma/prisma-engines.git /prisma && cd /prisma
 
 WORKDIR /prisma
+
 RUN cargo build --release
+
+#
 
 FROM node:alpine
 
@@ -21,7 +27,7 @@ COPY --from=prisma /prisma/target/release/query-engine /prisma/target/release/mi
 
 COPY package*.json ./
 
-RUN apk add --no-cache make gcc g++ && \
+RUN apk add --no-cache openssl make gcc g++ && \
   npm install && \
   apk del make gcc g++
 
