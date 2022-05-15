@@ -1,2 +1,2 @@
 ./node_modules
-./core/src/providers/postgres/prisma/migrations/*
+./core/src/providers/postgresql/prisma/migrations/*

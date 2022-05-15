@@ -9,10 +9,9 @@ export class PrismaExceptionCatcher {
   ): [number, string] {
     let error = new InternalServerErrorException();
 
-    if (
-      exception.code === 'P2002' &&
-      exception?.meta['target'].includes('email')
-    ) {
+    const meta = exception?.meta['target'] as any;
+
+    if (exception.code === 'P2002' && meta.includes('email')) {
       error = new AlreadyExistsEmailException();
     }
 

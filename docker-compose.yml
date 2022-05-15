@@ -19,6 +19,8 @@ services:
       - POSTGRES_USER=nebo
       - POSTGRES_PASSWORD=123
     restart: always
+    ports:
+      - '5432:5432'
 
   adminer:
     image: adminer
