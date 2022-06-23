@@ -1,2 +1,4 @@
+.DS_Store
+
 ./node_modules
 ./core/src/providers/postgresql/prisma/migrations/*

@@ -6,7 +6,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
-    "target": "es2017",
+    "target": "es2020",
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./",
@@ -24,6 +24,7 @@
       "@utils/*": ["core/src/utils/*"],
       "@providers/*": ["core/src/providers/*"],
       "@errors/*": ["core/src/errors/*"],
+      "@config": ["config"],
       "@config/*": ["config/*"]
     }
   }
