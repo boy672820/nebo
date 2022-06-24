@@ -11,7 +11,6 @@ import { CryptoConfigService } from './service';
       validationSchema: Joi.object({
         CRYPTO_PASSWORD: Joi.string().required(),
       }),
-      envFilePath: [`.env.${process.env.NODE_ENV}`],
     }),
   ],
   providers: [CryptoConfigService, ConfigService],

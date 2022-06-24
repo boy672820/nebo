@@ -18,4 +18,12 @@ export class AppConfigService {
   get name(): string {
     return this.configService.get<string>(prefix('name'));
   }
+
+  get description(): string {
+    return this.configService.get<string>(prefix('description'));
+  }
+
+  get version(): string {
+    return this.configService.get<string>(prefix('version'));
+  }
 }

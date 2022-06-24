@@ -5,8 +5,6 @@ import { AppConfigService } from '@config/app';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
-declare const module: any;
-
 async function createApp() {
   const app = await NestFactory.create(AppModule);
 
@@ -17,11 +15,13 @@ async function createApp() {
   const prismaService = app.get(PrismaService);
   await prismaService.enableShutdownHooks(app);
 
+  const appConfig = app.get<AppConfigService>(AppConfigService);
+
   // Swagger
   const config = new DocumentBuilder()
-    .setTitle(process.env.APP_NAME || 'NeBo')
-    .setDescription(process.env.APP_DESCRIPTION || 'Nest.js boilerplate')
-    .setVersion(process.env.APP_VERSION || '')
+    .setTitle(appConfig.name || 'NeBo')
+    .setDescription(appConfig.description || 'Nest.js boilerplate')
+    .setVersion(appConfig.version || '')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
@@ -33,27 +33,19 @@ async function createApp() {
 
 // ------------------------------------------------
 
-async function bootstrap() {
-  const app = await createApp();
-
-  // Set port
-  const appConfig = app.get(AppConfigService);
-  const port = appConfig.port;
-
-  await app.listen(port);
-
-  // HMR
-  if (module.hot) {
-    module.hot.accept();
-    module.hot.dispose(() => app.close());
-  }
-}
-
-// ------------------------------------------------
-
 export let viteNodeApp;
 
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV === 'production') {
+  async function bootstrap() {
+    const app = await createApp();
+
+    // Set port
+    const appConfig = app.get(AppConfigService);
+    const port = appConfig.port;
+
+    await app.listen(port);
+  }
+
   bootstrap();
 } else {
   viteNodeApp = createApp();
