@@ -8,10 +8,10 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "build:nest": "nest build",
-    "build": "vite build --watch",
+    "build": "vite build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "start": "nest start",
     "dev": "vite",
+    "start:nest": "nest start",
     "dev:nest": "nest start --watch",
     "debug": "nest start --debug --watch",
     "prod": "node dist/main",

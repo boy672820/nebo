@@ -33,8 +33,6 @@ async function createApp() {
 
 // ------------------------------------------------
 
-export let viteNodeApp;
-
 if (process.env.NODE_ENV === 'production') {
   async function bootstrap() {
     const app = await createApp();
@@ -47,6 +45,6 @@ if (process.env.NODE_ENV === 'production') {
   }
 
   bootstrap();
-} else {
-  viteNodeApp = createApp();
 }
+
+export const viteNodeApp = createApp();
