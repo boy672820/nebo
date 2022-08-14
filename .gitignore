@@ -35,5 +35,6 @@ lerna-debug.log*
 !.vscode/extensions.json
 
 # ignore files..
+# .env
 # .env*
 /core/src/providers/postgresql/prisma/migrations/*

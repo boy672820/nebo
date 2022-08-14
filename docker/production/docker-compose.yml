@@ -1,10 +1,12 @@
 version: '3'
 services:
   server:
-    container_name: nebo
+    container_name: station-backend
+    platform: linux/amd64
+    image: boy672820/station-backend
     build:
       context: ../../
-      dockerfile: docker/development/Dockerfile
+      dockerfile: docker/production/Dockerfile
     volumes:
       - ../../src:/usr/src/app/src
       - ../../core:/usr/src/app/core
