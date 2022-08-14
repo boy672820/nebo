@@ -31,20 +31,34 @@ async function createApp() {
   return app;
 }
 
-// ------------------------------------------------
+async function bootstrap() {
+  const app = await createApp();
 
-if (process.env.NODE_ENV === 'production') {
-  async function bootstrap() {
-    const app = await createApp();
+  // Set port
+  const appConfig = app.get(AppConfigService);
+  const port = appConfig.port;
 
-    // Set port
-    const appConfig = app.get(AppConfigService);
-    const port = appConfig.port;
-
-    await app.listen(port);
-  }
-
-  bootstrap();
+  await app.listen(port);
 }
 
-export const viteNodeApp = createApp();
+bootstrap();
+
+// ------------------------------------------------
+
+// if (process.env.NODE_ENV === 'production') {
+//   async function bootstrap() {
+//     const app = await createApp();
+
+//     // Set port
+//     const appConfig = app.get(AppConfigService);
+//     const port = appConfig.port;
+
+//     await app.listen(port);
+//   }
+
+//   bootstrap();
+// }
+
+// export const viteNodeApp = createApp();
+
+// ------------------------------------------------
