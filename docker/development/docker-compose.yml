@@ -2,15 +2,14 @@ version: '3'
 services:
   server:
     container_name: nebo
-    platform: linux/amd64
-    image: boy672820/nebo:latest
+    image: boy672820/nebo:development
     build:
       context: ../../
-      dockerfile: docker/production/Dockerfile
+      dockerfile: docker/development/Dockerfile
     volumes:
       - ../../src:/usr/src/app/src
       - ../../core:/usr/src/app/core
       - ../../config:/usr/src/app/config
       - ../../test:/usr/src/app/test
     ports:
-      - '8112:8112'
+      - '8111:8111'

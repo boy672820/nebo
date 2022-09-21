@@ -15,7 +15,7 @@ WORKDIR /usr/src/app
 COPY --from=deps /usr/src/app/node_modules ./node_modules
 COPY --from=deps /usr/src/app/package.json ./package.json
 COPY . .
-COPY .env.production .env
+COPY .env.development .env
 
 RUN npx prisma generate
 RUN yarn build
@@ -29,7 +29,7 @@ COPY --from=builder /usr/src/app/node_modules ./node_modules
 COPY --from=builder /usr/src/app/package.json ./package.json
 COPY --from=builder /usr/src/app/dist ./dist
 
-COPY .env.production .env
+COPY .env.development .env
 
 COPY ./docker/development/entrypoint.sh ./entrypoint.sh
 
