@@ -3,7 +3,7 @@
   "version": "1.2.1",
   "description": "Nest.js boilerplate",
   "author": "boy672820",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "scripts": {
     "prebuild": "rimraf dist",
     "build:vite": "vite build",

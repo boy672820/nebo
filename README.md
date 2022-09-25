@@ -1,43 +1,48 @@
 # NeBo
 
-## Description
-
 NeBo is the boilerplate for nest.js.
+
+### Reference
+
+- Prisma ORM(Migration & seed)
+- Swagger API
+- Using class-validator & transformer for DTO
+- Passport & JWT
+- Build Docker
+- Debugging support in vscode
 
 ## Installation
 
 You can run in docker environment.
 
+### Build Development
+
 ```bash
-$ docker-compose up
+$ make build-development
+$ make start-development
+$ make stop-development
 ```
 
-It supports docker but when installing in a local development environment requires the following global dependency packages.
+### Build Production
 
 ```bash
-$ npm i -g dotenv-cli
-```
-
-And install the dependency packages.
-
-```bash
-$ npm install
+$ make build-production
+$ make start-production
+$ make stop-production
 ```
 
 ## Running the app
 
 ```bash
 # development
-$ npm run dev
+$ yarn run dev
 
 # build your app
-$ npm run build
+$ yarn run build
 
 # production mode
-$ npm run prod
+$ yarn run prod
 ```
-
-
 
 ---
 
