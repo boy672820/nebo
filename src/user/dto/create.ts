@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Prisma } from '@prisma/client';
 import { IsEmail } from 'class-validator';
-import { IsPassword } from '@core/validators';
+import { IsPassword } from '@core/common/validators';
 
 export class CreateUserDto implements Prisma.UserCreateInput {
   @ApiProperty()

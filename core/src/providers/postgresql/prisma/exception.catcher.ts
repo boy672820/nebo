@@ -1,20 +1,18 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import { AlreadyExistsEmailException } from '@errors/user';
+import { AlreadyExistsEmailException } from '@core/common/errors/user';
 
 @Injectable()
 export class PrismaExceptionCatcher {
-  transformException(
-    exception: Prisma.PrismaClientKnownRequestError,
-  ): [number, string] {
-    let error = new InternalServerErrorException();
-
+  transformException(exception: Prisma.PrismaClientKnownRequestError) {
     const meta = exception?.meta['target'] as any;
 
-    if (exception.code === 'P2002' && meta.includes('email')) {
-      error = new AlreadyExistsEmailException();
+    if (exception.code === 'P2002') {
+      if (meta.includes(Prisma.UserScalarFieldEnum.email)) {
+        return new AlreadyExistsEmailException();
+      }
     }
 
-    return [error.getStatus(), error.message];
+    return new InternalServerErrorException();
   }
 }

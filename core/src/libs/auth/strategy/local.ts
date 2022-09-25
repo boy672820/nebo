@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { User } from '@prisma/client';
 import type { AuthServiceFactory, LocalOptions } from '@libs/auth';
-import { InvalidCredentialsException } from '@core/errors/auth';
+import { InvalidCredentialsException } from '@core/common/errors/auth';
 import { Strategy } from 'passport-local';
 
 @Injectable()

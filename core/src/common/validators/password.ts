@@ -3,9 +3,8 @@ import {
   registerDecorator,
   ValidatorConstraint,
   ValidatorConstraintInterface,
-  ValidationOptions,
 } from 'class-validator';
-import { InvalidPasswordException } from '@core/errors/user';
+import { InvalidPasswordException } from '@core/common/errors/user';
 
 @ValidatorConstraint()
 @Injectable()

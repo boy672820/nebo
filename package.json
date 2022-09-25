@@ -1,9 +1,8 @@
 {
   "name": "nebo",
-  "version": "0.0.1",
-  "description": "",
-  "author": "",
-  "private": true,
+  "version": "1.2.1",
+  "description": "Nest.js boilerplate",
+  "author": "boy672820",
   "license": "UNLICENSED",
   "scripts": {
     "prebuild": "rimraf dist",
@@ -102,6 +101,7 @@
     "testEnvironment": "node"
   },
   "prisma": {
-    "schema": "core/src/providers/postgresql/prisma/schema.prisma"
+    "schema": "core/src/providers/postgresql/prisma/schema.prisma",
+    "seed": "ts-node core/src/providers/mysql/prisma/seeder.ts"
   }
 }

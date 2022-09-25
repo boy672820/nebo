@@ -1,6 +1,6 @@
 import { Controller, Post } from '@nestjs/common';
-import { Local } from '@core/decorators/auth';
-import { User } from '@core/decorators/auth';
+import { Local } from '@core/common/decorators/auth';
+import { User } from '@core/common/decorators/auth';
 import type { LocalPayload } from '@libs/auth';
 
 @Controller('auth')
