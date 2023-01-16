@@ -1,2 +1,2 @@
-export * from './module';
-export * from './service';
+export * from './crypto.module';
+export * from './crypto.service';

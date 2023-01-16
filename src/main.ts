@@ -9,10 +9,16 @@ async function createApp() {
   const app = await NestFactory.create(AppModule);
 
   // Bind ValidationPipe
-  app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalPipes(
+    new ValidationPipe({
+      transform: true,
+      whitelist: true,
+    }),
+  );
 
   // Shutdown prisma after close application
   const prismaService = app.get(PrismaService);
+
   await prismaService.enableShutdownHooks(app);
 
   const appConfig = app.get<AppConfigService>(AppConfigService);
@@ -42,23 +48,3 @@ async function bootstrap() {
 }
 
 bootstrap();
-
-// ------------------------------------------------
-
-// if (process.env.NODE_ENV === 'production') {
-//   async function bootstrap() {
-//     const app = await createApp();
-
-//     // Set port
-//     const appConfig = app.get(AppConfigService);
-//     const port = appConfig.port;
-
-//     await app.listen(port);
-//   }
-
-//   bootstrap();
-// }
-
-// export const viteNodeApp = createApp();
-
-// ------------------------------------------------

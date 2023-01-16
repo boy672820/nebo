@@ -1,2 +1,2 @@
-export * from './module';
-export * from './service';
+export * from './jwt.module';
+export * from './jwt.service';
